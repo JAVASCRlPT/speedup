@@ -1,8 +1,3 @@
-<ul id="random-posts"></ul>
-<script>
-//<![CDATA[
-var homePage = "http://musikakuka.blogspot.com/",
-numPosts = 5;
-function randomPosts(a){if(document.getElementById("random-posts")){var e=shuffleArray(a.feed.entry),title,link,img,content="",ct=document.getElementById("random-posts");for(var i=0;i<numPosts;i++){for(var j=0;j<numPosts;j++){if(e[i].link[j].rel=="alternate"){link=e[i].link[j].href;break}}var title=e[i].title.$t;content+='<strong><li class="random-posts"><a href="'+link+'" title="'+title+'" target="_blank">'+title+'</a></li></strong>'}ct.innerHTML=content}}function shuffleArray(arr){var i=arr.length,j,temp;if(i===0)return false;while(--i){j=Math.floor(Math.random()*(i+1));temp=arr[i];arr[i]=arr[j];arr[j]=temp}return arr}var random_post=document.createElement('script');random_post.src=homePage+'/feeds/posts/summary?alt=json-in-script&orderby=published&max-results=999&callback=randomPosts';document.getElementsByTagName('head')[0].appendChild(random_post);
-//]]>
+<script type="text/javascript">
+var randarray = new Array();var l=0;var flag; var numofpost=10;function randomposts(json){ var total = parseInt(json.feed.openSearch$totalResults.$t,10); for(i=0;i < numofpost;){flag=0;randarray.length=numofpost;l=Math.floor(Math.random()*total);for(j in randarray){if(l==randarray[j]){ flag=1;}} if(flag==0&&l!=0){randarray[i++]=l;}}document.write('<ul>'); for(n in randarray){ var p=randarray[n];var entry=json.feed.entry[p-1]; for(k=0; k < entry.link.length; k++){if(entry.link[k].rel=='alternate'){var item = "<li>" + "<a href=" + entry.link[k].href + ">" + entry.title.$t + "</a> </li>"; document.write(item);}} }document.write('</ul>');} </script><script src="http://musikakuka.blogspot.com/feeds/posts/default?alt=json-in-script&amp;start-index=5&amp;max-results=300&amp;callback=randomposts" type="text/javascript">
 </script>
